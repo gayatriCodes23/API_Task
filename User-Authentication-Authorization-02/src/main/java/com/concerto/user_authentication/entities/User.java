@@ -1,14 +1,15 @@
 package com.concerto.user_authentication.entities;
 
+import java.util.Collection;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.*;
-
-import java.util.Collection;
-import java.util.Date;
 
 @Entity
 @Table(name = "USER_TABLE")
@@ -30,6 +31,22 @@ public class User implements UserDetails {
 
 	@Column(name = "password")
 	private String password;
+
+	@Column(name = "date_of_birth")
+	private String dateOfBirth;
+
+	@Column(name = "city")
+	private String city;
+
+	@Column(name = "gender")
+	private String gender;
+
+	@Column(name = "nationality")
+	private String nationality;
+
+	@Column(name = "role")
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public String getId() {
 		return id;
@@ -71,31 +88,70 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	public User() {
 
 	}
 
-	public User(String firstName, String lastName, String email, String password) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", dateOfBirth=" + dateOfBirth + ", city=" + city + ", gender=" + gender
+				+ ", nationality=" + nationality + ", role=" + role + "]";
 	}
 
-	public User(String id, String firstName, String lastName, String email, String password) {
+	public User(String id, String firstName, String lastName, String email, String password, String dateOfBirth,
+			String city, String gender, String nationality, Role role) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + "]";
+		this.dateOfBirth = dateOfBirth;
+		this.city = city;
+		this.gender = gender;
+		this.nationality = nationality;
+		this.role = role;
 	}
 
 	@Override
@@ -133,36 +189,4 @@ public class User implements UserDetails {
 
 		return true;
 	}
-
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
-	// private Long id;
-	//
-	// private String username;
-	//
-	// private String firstName;
-	//
-	// private String middleName;
-	//
-	// private String lastName;
-	//
-	// private Date dateOfBirth;
-	//
-	// private String gender;
-	//
-	// private String city;
-	//
-	// private String pincode;
-	//
-	// private String nationality;
-	//
-	// private String emailId;
-	//
-	// private String countryCode;
-	//
-	// private String mobileNumber;
-	//
-	// private String role;
-	//
-	// private String password;
 }
